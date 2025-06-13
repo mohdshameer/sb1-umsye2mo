@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { ThemeToggle } from '@/components/theme-toggle';
+import Image from 'next/image';
 import { 
   Network, 
   Server, 
@@ -342,8 +343,15 @@ export default function HomePage() {
         <div className="glass-nav rounded-full px-6 py-3 mx-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <div className="text-xl font-bold text-foreground mr-8 interactive">
-              White<span className="text-cyan-400">Zadow</span>
+            <div className="flex items-center mr-8 interactive">
+              <Image
+                src="/wzlogo-light-1.png"
+                alt="WhiteZadow Logo"
+                width={120}
+                height={40}
+                className="h-8 w-auto object-contain"
+                priority
+              />
             </div>
             
             {/* Desktop Navigation Icons */}
@@ -430,6 +438,20 @@ export default function HomePage() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <div className="animate-fade-in-up">
+            {/* Logo in Hero */}
+            <div className="flex justify-center mb-8 animate-bounce-in">
+              <div className="p-6 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-3xl backdrop-blur-sm border border-cyan-500/20">
+                <Image
+                  src="/wzlogo-light-1.png"
+                  alt="WhiteZadow Logo"
+                  width={300}
+                  height={100}
+                  className="h-16 w-auto object-contain"
+                  priority
+                />
+              </div>
+            </div>
+
             {/* Animated Icons */}
             <div className="flex justify-center space-x-8 mb-8 animate-float">
               <div className="p-4 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-full backdrop-blur-sm border border-cyan-500/30">
@@ -740,8 +762,14 @@ export default function HomePage() {
       <footer className="bg-background py-12 border-t border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <div className="text-3xl font-bold text-foreground mb-4 interactive">
-              White<span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Zadow</span>
+            <div className="flex justify-center mb-4 interactive">
+              <Image
+                src="/wzlogo-light-1.png"
+                alt="WhiteZadow Logo"
+                width={200}
+                height={60}
+                className="h-12 w-auto object-contain"
+              />
             </div>
             <p className="text-muted-foreground mb-6">
               Transforming businesses through innovative IT network solutions
