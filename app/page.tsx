@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { ThemeToggle } from '@/components/theme-toggle';
 import Image from 'next/image';
+import Spline from '@splinetool/react-spline';
 import { 
   Network, 
   Server, 
@@ -44,6 +45,7 @@ export default function HomePage() {
   const [activeSection, setActiveSection] = useState('home');
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  const [splineLoaded, setSplineLoaded] = useState(false);
   const cursorRef = useRef<HTMLDivElement>(null);
   const cursorDotRef = useRef<HTMLDivElement>(null);
 
@@ -427,14 +429,32 @@ export default function HomePage() {
 
       {/* Hero Section */}
       <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden light-bg">
-        <ParticleField />
-        
-        {/* Animated Background Elements */}
+        {/* Spline 3D Background */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-cyan-500/5 to-blue-500/5 rounded-full blur-3xl animate-spin-slow"></div>
+          <div className={`w-full h-full transition-opacity duration-1000 ${splineLoaded ? 'opacity-100' : 'opacity-0'}`}>
+            <Spline
+              scene="https://prod.spline.design/6ecyFsh7Jx7dV8g3/scene.splinecode"
+              onLoad={() => setSplineLoaded(true)}
+              style={{
+                width: '100%',
+                height: '100%',
+                background: 'transparent'
+              }}
+            />
+          </div>
+          
+          {/* Fallback animated background elements while Spline loads */}
+          <div className={`absolute inset-0 transition-opacity duration-1000 ${splineLoaded ? 'opacity-0' : 'opacity-100'}`}>
+            <div className="absolute top-20 left-10 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-cyan-500/5 to-blue-500/5 rounded-full blur-3xl animate-spin-slow"></div>
+          </div>
+          
+          {/* Overlay gradient for better text readability */}
+          <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-transparent to-background/40 z-1"></div>
         </div>
+
+        <ParticleField />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <div className="animate-fade-in-up">
@@ -519,7 +539,7 @@ export default function HomePage() {
         </div>
         
         {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
           <ChevronDown className="text-cyan-400 animate-pulse" size={32} />
         </div>
       </section>
