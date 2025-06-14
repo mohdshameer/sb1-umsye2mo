@@ -525,7 +525,104 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-        
+         {/* Hero Section */}
+      <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden light-bg">
+        {/* Spline 3D Background */}
+        <div className="absolute inset-0 z-0">
+          <div className={`w-full h-full transition-opacity duration-1000 ${splineLoaded ? 'opacity-100' : 'opacity-0'}`}>
+            <Spline
+              scene="https://prod.spline.design/6ecyFsh7Jx7dV8g3/scene.splinecode"
+              onLoad={() => setSplineLoaded(true)}
+              style={{
+                width: '100%',
+                height: '100%',
+                background: 'transparent'
+              }}
+            />
+          </div>
+          
+          {/* Fallback animated background elements while Spline loads */}
+          <div className={`absolute inset-0 transition-opacity duration-1000 ${splineLoaded ? 'opacity-0' : 'opacity-100'}`}>
+            <div className="absolute top-20 left-10 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-cyan-500/5 to-blue-500/5 rounded-full blur-3xl animate-spin-slow"></div>
+          </div>
+          
+          {/* Overlay gradient for better text readability */}
+          <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-transparent to-background/40 z-1"></div>
+        </div>
+
+        <ParticleField />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <div className="animate-fade-in-up">
+          
+
+            {/* Animated Icons */}
+            <div className="flex justify-center space-x-8 mb-8 animate-float">
+              <div className="p-4 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-full backdrop-blur-sm border border-cyan-500/30">
+                <Network className="text-cyan-400" size={32} />
+              </div>
+              <div className="p-4 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full backdrop-blur-sm border border-blue-500/30 animate-delay-200">
+                <Server className="text-blue-400" size={32} />
+              </div>
+              <div className="p-4 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full backdrop-blur-sm border border-purple-500/30 animate-delay-400">
+                <Shield className="text-purple-400" size={32} />
+              </div>
+            </div>
+
+            <h1 className="text-6xl md:text-8xl font-bold mb-6 animate-text-glow">
+              <span className="inline-block animate-bounce-in">IT</span>{' '}
+              <span className="inline-block animate-bounce-in delay-200">Network</span>
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 animate-gradient-x animate-bounce-in delay-400">
+                Specialist
+              </span>
+            </h1>
+            
+            <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-4xl mx-auto animate-fade-in delay-600">
+              Designing, implementing, and securing enterprise network infrastructures 
+              with cutting-edge technology solutions and innovative approaches.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-6 justify-center animate-fade-in delay-800">
+              <Button 
+                size="lg" 
+                className="bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white px-8 py-4 text-lg interactive transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-cyan-500/25"
+                onClick={() => scrollToSection('projects')}
+              >
+                <Zap className="mr-2" size={20} />
+                View My Work
+              </Button>
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="border-2 border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-black px-8 py-4 text-lg interactive transform hover:scale-105 transition-all duration-300 bg-transparent backdrop-blur-sm"
+                onClick={() => scrollToSection('contact')}
+              >
+                <Mail className="mr-2" size={20} />
+                Get In Touch
+              </Button>
+            </div>
+
+            {/* Tech Stats */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 animate-fade-in delay-1000">
+              {[
+                { number: '50+', label: 'Projects', icon: Cpu },
+                { number: '8+', label: 'Years', icon: HardDrive },
+                { number: '25+', label: 'Clients', icon: Globe },
+                { number: '99.9%', label: 'Uptime', icon: Zap }
+              ].map((stat, index) => (
+                <div key={index} className="text-center group">
+                  <div className="p-4 bg-card/50 backdrop-blur-sm rounded-xl border border-border/50 group-hover:border-cyan-500/50 transition-all duration-300 interactive">
+                    <stat.icon className="mx-auto mb-2 text-cyan-400 group-hover:scale-110 transition-transform duration-300" size={24} />
+                    <div className="text-2xl font-bold text-foreground">{stat.number}</div>
+                    <div className="text-sm text-muted-foreground">{stat.label}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
         {/* Scroll Indicator */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
           <ChevronDown className="text-cyan-400 animate-pulse" size={32} />
