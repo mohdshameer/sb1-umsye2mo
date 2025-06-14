@@ -458,19 +458,7 @@ export default function HomePage() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <div className="animate-fade-in-up">
-            {/* Logo in Hero */}
-            <div className="flex justify-center mb-8 animate-bounce-in">
-              <div className="p-6 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-3xl backdrop-blur-sm border border-cyan-500/20">
-                <Image
-                  src="/wzlogo-light-1.png"
-                  alt="WhiteZadow Logo"
-                  width={300}
-                  height={100}
-                  className="h-16 w-auto object-contain"
-                  priority
-                />
-              </div>
-            </div>
+          
 
             {/* Animated Icons */}
             <div className="flex justify-center space-x-8 mb-8 animate-float">
